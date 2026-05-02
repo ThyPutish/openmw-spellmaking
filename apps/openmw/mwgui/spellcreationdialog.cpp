@@ -665,7 +665,8 @@ namespace MWGui
         const ESM::Spell* spell = MWBase::Environment::get().getESMStore()->insert(mSpell);
 
         MWMechanics::CreatureStats& stats = player.getClass().getCreatureStats(player);
-        MWMechanics::Spells& spells = stats.getSpells();
+        const auto& spells =
+        MWBase::Environment::get().getWorld()->getStore().get<ESM::Spell>();
         spells.add(spell->mId);
 
         MWBase::Environment::get().getWindowManager()->removeGuiMode(GM_SpellCreation);
